@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Nordic Union template
 // @namespace    http://tampermonkey.net/
-// @version      0.3
+// @version      0.4
 // @description  try to defend the nordic union!
 // @author       AskPlays
 // @match        https://hot-potato.reddit.com/embed*
@@ -16,7 +16,7 @@ if (window.top !== window.self) {
       (function () {
           const i = document.createElement("img");
           i.src = "https://raw.githubusercontent.com/AskPlays/place-nordicunion/main/dotted-place-template.png";
-          i.style = "position: absolute;left: 0;top: 0;image-rendering: pixelated;width: 1000px;height: 1000px;";
+          i.style = "position: absolute;left: 0;top: 0;image-rendering: pixelated;width: 1000px;height: 2000px;";
           console.log(i);
           return i;
       })())
