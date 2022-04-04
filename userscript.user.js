@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Nordic Union template
 // @namespace    http://tampermonkey.net/
-// @version      0.4
+// @version      0.5
 // @description  try to defend the nordic union!
 // @author       AskPlays
 // @match        https://hot-potato.reddit.com/embed*
@@ -16,11 +16,21 @@ if (window.top !== window.self) {
       (function () {
           const i = document.createElement("img");
           i.src = "https://raw.githubusercontent.com/AskPlays/place-nordicunion/main/dotted-place-template.png";
-          i.style = "position: absolute;left: 0;top: 0;image-rendering: pixelated;width: 1000px;height: 2000px;";
+          i.style = "position: absolute;left: 0;top: 0;image-rendering: pixelated;width: ${i.width/3}px; height: ${i.height/3}px;";
           console.log(i);
           return i;
       })())
 
+      // Add a style to put a hole in the pixel preview (to see the current or desired color)
+      const waitForPreview = setInterval(() => {
+        const preview = camera.querySelector("mona-lisa-pixel-preview");
+        if (preview) {
+          clearInterval(waitForPreview);
+          const style = document.createElement('style')
+          style.innerHTML = '.pixel { clip-path: polygon(-20% -20%, -20% 120%, 37% 120%, 37% 37%, 62% 37%, 62% 62%, 37% 62%, 37% 120%, 120% 120%, 120% -20%); }'
+          preview.shadowRoot.appendChild(style);
+        }
+    }, 200);
   }, false);
 
 }
