@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Nordic Union template
 // @namespace    http://tampermonkey.net/
-// @version      0.7
+// @version      0.8
 // @description  try to defend the nordic union!
 // @author       AskPlays
 // @match        https://hot-potato.reddit.com/embed*
@@ -12,18 +12,37 @@
 // ==/UserScript==
 if (window.top !== window.self) {
   window.addEventListener('load', () => {
-      const camera = document.querySelector("mona-lisa-embed").shadowRoot.querySelector("mona-lisa-camera");
-      const canvas = camera.querySelector("mona-lisa-canvas");
-      canvas.shadowRoot.querySelector('.container').appendChild(
-      (function () {
-          const i = document.createElement("img");
-          i.src = "https://raw.githubusercontent.com/AskPlays/place-nordicunion/main/dotted-place-template.png";
-          i.onload = () => {
-            i.style = `position: absolute;left: 0;top: 0;image-rendering: pixelated;width: ${i.width/3}px; height: ${i.height/3}px;`;
-          }
-          console.log(i);
-          return i;
-      })());
+    const camera = document.querySelector("mona-lisa-embed").shadowRoot.querySelector("mona-lisa-camera");
+    const layout = document.getElementsByTagName("mona-lisa-embed")[0].shadowRoot.children[0].children[0];
+    const canvas = camera.querySelector("mona-lisa-canvas");
+    let img = document.createElement("img");
+    const url = "https://raw.githubusercontent.com/AskPlays/place-nordicunion/main/dotted-place-template.png";
+    function addImg() {
+        canvas.shadowRoot.querySelector('.container').appendChild(
+            (function () {
+                img.src = url+"?"+(new Date().getTime());
+                img.onload = () => {
+                    img.style = `position: absolute;left: 0;top: 0;image-rendering: pixelated;width: ${img.width/3}px; height: ${img.height/3}px;`;
+                }
+                console.log(img);
+                return img;
+            }
+        )());
+    }
+    addImg();
+
+    layout.appendChild(
+    (function () {
+        const btn = document.createElement("button");
+        btn.style = "position: absolute;left: 20px;top: 60px; background #fff; border-radius: 5px; font-size: 16px; cursor: pointer !important; padding: 4px;";
+        btn.innerText = "Refresh Template";
+        btn.onclick = () => {
+            img.remove();
+            img = document.createElement("img");
+            addImg();
+        }
+        return btn;
+    })());
 
       // Add a style to put a hole in the pixel preview (to see the current or desired color)
       const waitForPreview = setInterval(() => {
