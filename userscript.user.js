@@ -17,7 +17,7 @@ if (window.top !== window.self) {
           const i = document.createElement("img");
           i.src = "https://raw.githubusercontent.com/AskPlays/place-nordicunion/main/dotted-place-template.png";
           i.onload = () => {
-            i.style = "position: absolute;left: 0;top: 0;image-rendering: pixelated;width: ${i.width/3}px; height: ${i.height/3}px;";
+            i.style = `position: absolute;left: 0;top: 0;image-rendering: pixelated;width: ${i.width/3}px; height: ${i.height/3}px;`;
           }
           console.log(i);
           return i;
