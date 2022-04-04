@@ -8,5 +8,7 @@ https://github.com/AskPlays/place-nordicunion/raw/main/userscript.user.js
 
 You should now see an overlay after refreshing the page.
 
-Current overlay:
+current image
+![nordicunion](https://raw.githubusercontent.com/AskPlays/place-nordicunion/main/nordicunion-place-area.png)
+Current overlay
 ![overlay](https://raw.githubusercontent.com/AskPlays/place-nordicunion/main/dotted-place-template.png)
